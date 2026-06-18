@@ -30,8 +30,14 @@ table {
   grid-row: 1;
 }
 
+
 .overlay-layer {
-  z-index: 2; /* Forces this layer to sit on top */
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 .base-layer {
