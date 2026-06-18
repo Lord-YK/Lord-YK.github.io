@@ -1,5 +1,5 @@
 body, html {
-    font-family: courier, serif;
+    font-family: monospace, 'Courier New', Courier;
     margin: 0;
     background-color: #AAAAAA
 }
@@ -7,8 +7,40 @@ body, html {
 canvas {
     border: 2px solid black;
     background-color: #AA0000;
-    display: block;
     margin: 0 auto;
 }
+table {
+    width: 100%;
+    height:100vh;
+    
+}
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center; /* Optional: centers both items */
+  width: 100vw;
+  height: 100vh;
+}
+
+.base-layer, 
+.overlay-layer {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.overlay-layer {
+  z-index: 2; /* Forces this layer to sit on top */
+}
+
+.base-layer {
+    width:100vw;
+    height: 100vh;  
+    overflow:hidden;
+    overflow-wrap:anywhere;
+    word-break:break-all;
+    white-space: pre-wrap;
+    
+}
 
