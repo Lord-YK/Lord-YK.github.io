@@ -123,8 +123,10 @@ function renderdialogue() {
         makeBG("Is it funny? Watching my tail get ripped out a hundred times? Is that why you're still here? ");
       } else if (severcount===101) {
         makeBG("...I guess that's my answer. ");
-      } else {
+      } else if (severcount>4 && severcount<100) {
         makeBG("again and ");
+      } else {
+        makeBG("I hate you ");
       }
       break;
     case 10:
