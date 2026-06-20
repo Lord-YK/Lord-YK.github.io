@@ -179,7 +179,7 @@ function renderdialogue() {
       } else if (severcount===101) {
         makeBG("...I guess that's my answer. ");
       } else if (severcount>4 && severcount<100) {
-        makeBG("again and ");
+        makeBG("again  and  again  and  ");
       } else {
         makeBG("I hate you ", "italian");
       }
