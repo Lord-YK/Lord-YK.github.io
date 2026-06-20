@@ -3,13 +3,14 @@ const ctx = canvas.getContext('2d');
 const canvassize = 21
 const box = canvas.width/canvassize;
 const maxbglen = 7000;
-const period = 120;
+const period = 180;
 let snake;
 let food;
 let score;
 let directionqueue;
 let bgelem;
 let severcount;
+let star;
 
 function makeBG(strtobg) {
   bgstr="";
@@ -27,7 +28,9 @@ function init() {
   food = { x: Math.floor(Math.random() * 10)+11, y: Math.floor(Math.random() * (canvassize-2))+1 };
   score = 0;
   directionqueue = ["", ""];
+  star = {x:-99,y:0};
 }
+
 function sever() {
   severcount++;
   while (snake.length>3) {
@@ -35,6 +38,7 @@ function sever() {
   } 
   food = { x: Math.floor(Math.random() * 10)+11, y: Math.floor(Math.random() * (canvassize-2))+1 };
   score = 0;
+  star = {x:-99,y:0}
 }
 
 function drawGrid() {
@@ -45,21 +49,64 @@ function drawGrid() {
     }
   }
 }
+
 function drawSnake() {
   snake.forEach(segment => {
     ctx.fillStyle = '#AAAAAA';
     ctx.fillRect(segment.x * box, segment.y * box, box+1, box+1);
   });
 }
+
 function drawFood() {
   ctx.fillStyle = '#AA0000';
   ctx.fillRect(food.x * box, food.y * box, box, box);
 }
+
+function drawStar() {
+  ctx.fillStyle='#444400';
+  ctx.fillRect((star.x-1)*box,(star.y-1)*box,3*box,3*box);
+  ctx.fillStyle = '#777700';
+  ctx.fillRect(star.x*box, (star.y-1)*box, box, 3*box);
+  ctx.fillRect((star.x-1)*box,star.y*box,3*box,box)
+  ctx.fillStyle = '#FFFF88';
+  ctx.fillRect(star.x*box, star.y*box, box, box);
+  
+
+}
+
 function shift(paramx,paramy) {
   snake.forEach(val => {val.x+=paramx;val.y+=paramy})
   food.x+=paramx;
   food.y+=paramy;
+  star.x+=paramx;
+  star.y+=paramy;
+  if ((paramx!==1)&&Math.ceil(Math.random()*160)===25 && (star.x<0 || star.x>20 || star.y<0 || star.y>20)) {
+    setTimeout(() => {
+      makeBG("Oh look, a star! ")
+    }, 500);
+    setTimeout(() => {
+      if (!(star.x<0 || star.x>20 || star.y<0 || star.y>20)) {
+        makeBG("It's warm... ")
+      } else {
+        makeBG("I hope there are more stars around... ")
+      }
+    }, 10000);
+    if (paramx===0) {
+      if (paramy===1) {
+        star = { x : Math.floor(Math.random()*20), y : 0};
+      } else {
+        star = { x : Math.floor(Math.random()*20), y : 20};
+      }
+    } else {
+      if (paramx==1) {
+        star = { x : 0, y : Math.floor(Math.random()*20)};
+      } else {
+        star = {x : 20, y:Math.floor(Math.random()*20)};
+      }
+    }
+  }
 }
+
 function moveSnake() {
   const head = { ...snake[0] };
    if (directionqueue.length>2)
@@ -75,9 +122,12 @@ function moveSnake() {
         x: Math.floor(Math.random() * 10)+11,
         y: Math.floor(Math.random() * (canvassize-2))+1,
       };
-    } while (snake.some(segment => segment.x === food.x && segment.y === food.y))
+    } while ((snake.some(segment => segment.x === food.x && segment.y === food.y)) || (food.x===star.x&&food.y===star.y))
   } else if (snake.length>3) {
     snake.pop();
+  }
+  if (head.x === star.x && head.y === star.y) {
+    makeBG("You can't eat a star, silly. ")
   }
 }
 window.addEventListener('keydown', event => {
@@ -145,7 +195,7 @@ function renderdialogue() {
       makeBG("I can't give you anything ");
       break;
     case 26:
-      makeBG("I'm just a snake in an infinite grid of black pixels eating red pixels I pretend are apples. ");
+      makeBG("I'm just a blob of rectangles in an infinite grid of black eating red pixels I pretend are apples. ");
       break;
     case 28:
       makeBG("...Am I a snake? I can't really remember anymore... Do you know? ");
@@ -190,6 +240,7 @@ function gameLoop() {
   }
   
   drawGrid();
+  drawStar();
   drawSnake();
   drawFood();
   moveSnake();
