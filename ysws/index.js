@@ -2,7 +2,7 @@ const canvas = document.getElementById('gamecanvas');
 const ctx = canvas.getContext('2d');
 const canvassize = 21
 const box = canvas.width/canvassize;
-const maxbglen = 7000;
+const maxbglen = 10000;
 const period = 180;
 let snake;
 let food;
@@ -12,11 +12,16 @@ let bgelem;
 let severcount;
 let star;
 
-function makeBG(strtobg) {
+function makeBG(strtobg, yeah) {
   bgstr="";
   bgstr += strtobg.slice(1,strtobg.length)
   while (bgstr.length<maxbglen) {
     bgstr += (strtobg + " ".repeat(Math.floor(Math.random()*1)));
+  }
+  if (yeah === "yeah") {
+    bgstr = "<h1 style='margin:auto'>" + bgstr + "</h1";
+  } else if (yeah==="italian") {
+    bgstr = "<a style='font-style: italic;'>" + bgstr + "</a>"
   }
   bgelem.innerHTML = bgstr;
 }
@@ -93,9 +98,9 @@ function shift(paramx,paramy) {
     }, 10000);
     if (paramx===0) {
       if (paramy===1) {
-        star = { x : Math.floor(Math.random()*20), y : 0};
+        star = { x : Math.floor(Math.random()*10)+11, y : 0};
       } else {
-        star = { x : Math.floor(Math.random()*20), y : 20};
+        star = { x : Math.floor(Math.random()*10)+11, y : 20};
       }
     } else {
       if (paramx==1) {
@@ -161,7 +166,7 @@ function renderdialogue() {
       if (severcount===0) {
         makeBG("You can keep playing until you get bored. ");
       } else if (severcount===1) {
-        makeBG("I just died. Because of you. Kind of. Not really. It's as close as I can get, though. ");
+        makeBG("I died  ","yeah");
 
       } else if (severcount===2) {
         makeBG("Soooo are you leaving now? are you? ");
@@ -176,7 +181,7 @@ function renderdialogue() {
       } else if (severcount>4 && severcount<100) {
         makeBG("again and ");
       } else {
-        makeBG("I hate you ");
+        makeBG("I hate you ", "italian");
       }
       break;
     case 10:
