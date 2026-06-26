@@ -76,7 +76,8 @@ function starteyes() {
         if (isthereaneyehere===0) {
             let spinspinspin = mathdotrandom(0,3);
             if (spinspinspin < 2) {
-                eyesonscreen.push([assets.objectss[spinspinspin].width,assets.objectss[spinspinspin].height,assets.objectss[spinspinspin].frames,mathdotrandom(0,assets.objectss[spinspinspin].frames.length),mathdotrandom(0,flowermapwidth-assets.objectss[spinspinspin].width),y]);                //0 width 1 height 2 frames 3 currentframe 4 x 5 y
+                eyesonscreen.push([assets.objectss[spinspinspin].width,assets.objectss[spinspinspin].height,assets.objectss[spinspinspin].frames,mathdotrandom(0,assets.objectss[spinspinspin].frames.length),mathdotrandom(0,flowermapwidth-assets.objectss[spinspinspin].width),y]);
+                //0 width 1 height 2 frames 3 currentframe 4 x 5 y
                 isthereaneyehere =assets.objectss[spinspinspin].height;
             }
         }
@@ -94,7 +95,7 @@ function tickeyes() {
     }
     eyesonscreen.forEach((element)=> {
         for (i=0;i<element[1];i++) {
-            returnarr[element[5]+i]=" ".repeat(element[4]+1)+element[2][element[3]] + " ".repeat(flowermapwidth-element[4]-element[0]-1)+"<br>";
+            returnarr[element[5]+i]=" ".repeat(element[4]+1)+element[2][element[3]][i] + " ".repeat(flowermapwidth-element[4]-element[0]-1)+"<br>";
         }
     })
     returnarr.forEach((val)=>{
@@ -175,4 +176,3 @@ async function flowertick() {
         alert("You received a gift: [Flower Field]!")
     }
 }
-
