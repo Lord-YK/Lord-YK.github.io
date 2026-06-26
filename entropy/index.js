@@ -88,20 +88,28 @@ function starteyes() {
 }
 
 function tickeyes() {
-    returnstr="";
+    returnstr="<a style='color:#00FF00;'>";
     returnarr=[];
     for (y=0;y<flowermapheight;y++) {
-        returnarr.push(" ".repeat(flowermapwidth));
+        returnarr.push(" ".repeat(flowermapwidth)+"<br>");
     }
     eyesonscreen.forEach((element)=> {
         for (i=0;i<element[1];i++) {
-            returnarr[element[5]+i]=" ".repeat(element[4]+1)+element[2][element[3]] + " ".repeat(flowermapwidth-element[4]-element[0]-1);
+            returnarr[element[5]+i]=" ".repeat(element[4]+1)+element[2][element[3]] + " ".repeat(flowermapwidth-element[4]-element[0]-1)+"<br>";
         }
     })
     returnarr.forEach((val)=>{
         returnstr += val;
     })
-    flowerfield.innerHTML=returnstr;
+    returnstr += "</a>"
+    for (i=0;i<returnstr.length;i++) {
+        if (returnstr[i]===" ") {
+            newreturnstr += "&nbsp";
+        } else {
+            newreturnstr += returnstr[i];
+        }
+    }
+    flowerfield.innerHTML=newreturnstr;
     //change ' ' to &nbsp
 }
 
