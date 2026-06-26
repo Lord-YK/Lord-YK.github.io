@@ -45,7 +45,7 @@ seedinput.addEventListener("keydown", async function(event) {
         if (eh ===0) {
             generateflowermap();
             flowerfield.style.backgroundColor = "#222222"
-        } else if (eh===1) {
+        } else {
             flowerfield.innerHTML = "";
             starteyes();
             flowerfield.style.backgroundColor = "#000000"
