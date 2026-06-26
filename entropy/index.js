@@ -90,6 +90,7 @@ function starteyes() {
 function tickeyes() {
     returnstr="<a style='color:#00FF00;'>";
     returnarr=[];
+    let newreturnstr = "";
     for (y=0;y<flowermapheight;y++) {
         returnarr.push(" ".repeat(flowermapwidth)+"<br>");
     }
