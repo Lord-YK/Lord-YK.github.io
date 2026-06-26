@@ -87,6 +87,9 @@ function starteyes() {
     
     }
     setInterval(tickeyes, 200);
+    setTimeout(() => {
+        alert("You received a gift: [Ceaseless Watcher]!")
+    }, 2000);
 }
 
 function tickeyes() {
