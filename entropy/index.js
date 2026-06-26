@@ -8,6 +8,9 @@ const heightpxperchar = 26;
 const flowermapwidth = Math.floor(width/widthpxperchar);
 const flowermapheight = Math.floor(height/heightpxperchar);
 
+let assets;
+let eyesonscreen=[];
+let isthereaneyehere=0;
 let mathdotrandomindex = -1
 let randomarr = [];
 let seed = [];
@@ -24,15 +27,29 @@ let nextflowermap = Array.from({length: flowermapwidth}, () =>
     Array.from({length: flowermapheight}, () => [0,0,0,'&nbsp'])
 );
 
+fetch('./assets.json')
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    assets = data;
+  })
+
 
 seedinput.addEventListener("keydown", async function(event) {
     if (event.key==="Enter") {
         event.preventDefault();
         seed = seedinput.value.toUpperCase();
         await reroll();
-        if (mathdotrandom(0,1) ===0) {
+        let eh = mathdotrandom(0,2)
+        if (eh ===0) {
             generateflowermap();
             flowerfield.style.backgroundColor = "#222222"
+        } else if (eh===1) {
+            flowerfield.innerHTML = "";
+            starteyes();
+            flowerfield.style.backgroundColor = "#000000"
+
         }
     }
 })
@@ -54,7 +71,32 @@ function mathdotrandom(inclusivemin, exclusivemax) {
     return Math.floor(randomarr[mathdotrandomindex%(randomarr.length)]/256*(exclusivemax-inclusivemin))+inclusivemin;
 }
 
+function starteyes() {
+    for (y=0;y<flowermapheight;y++) {
+        if (isthereaneyehere===0) {
+            let spinspinspin = mathdotrandom(0,3);
+            if (spinspinspin < 2) {
+                eyesonscreen.push([assets.objectss[spinspinspin].width,assets.objectss[spinspinspin].height,assets.objectss[spinspinspin].frames,mathdotrandom(0,assets.objectss[spinspinspin].frames.length),mathdotrandom(0,flowermapwidth-assets.objectss[spinspinspin].width),y]);
+                //0 width 1 height 2 frames 3 currentframe 4 x 5 y
+                isthereaneyehere =assets.objectss[spinspinspin].height;
+            }
+        }
+        isthereaneyehere--;
+    
+    }
+    setInterval(tickeyes, 200);
+}
 
+function tickeyes() {
+    returnstr=""
+    returnarr=[]
+    for (y=0;y<flowermapheight;y++) {
+        returnarr.push(" ".repeat(flowermapwidth));
+    }
+    eyesonscreen.forEach((element)=> {
+        returnarr[element[5]]=0
+    })
+}
 
 
 
@@ -106,7 +148,6 @@ async function flowertick() {
             }
             if (x===(flowermapwidth-1)) {
                 returnstr += "<br>";
-                console.log(`broken at ${x},${y}`);
             }
         }
     }
