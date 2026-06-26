@@ -41,12 +41,11 @@ async function reroll() {
     const hashArray = Array.from(intermediate);
     seed = intermediate;
     randomarr =  hashArray;
-}       
-
+}
 function mathdotrandom(inclusivemin, exclusivemax) {
     mathdotrandomindex++;
-    if (mathdotrandomindex === randomarr.length) {
-        reroll();
+    if (mathdotrandomindex === randomarr.length-5) {
+        reroll(); 
         mathdotrandomindex=0;
     }
     return Math.floor(randomarr[mathdotrandomindex%(randomarr.length)]/256*(exclusivemax-inclusivemin))+inclusivemin;
