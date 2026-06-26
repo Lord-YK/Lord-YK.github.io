@@ -8,29 +8,32 @@ const heightpxperchar = 26;
 const flowermapwidth = Math.floor(width/widthpxperchar);
 const flowermapheight = Math.floor(height/heightpxperchar);
 
-randomarr = [];
-seed = [];
-returnstr = "";
-flowertickinterval = 0;
-flag=false;
-flowertypes = [];
-flowerchars = ['9','T','P','Y','$','@','*','x','v','p','t','O']
-flowermap = Array.from({length: flowermapwidth}, () =>
+let mathdotrandomindex = -1
+let randomarr = [];
+let seed = [];
+let returnstr = "";
+let flowertickinterval = 0;
+let flag=false;
+let flowertypes = [];
+let flowerchars = ['9','T','P','Y','$','@','*','x','v','p','t','O']
+let flowermap = Array.from({length: flowermapwidth}, () =>
     Array.from({length: flowermapheight}, () => [0,0,0,'&nbsp'])
 );
 
-nextflowermap = Array.from({length: flowermapwidth}, () =>
+let nextflowermap = Array.from({length: flowermapwidth}, () =>
     Array.from({length: flowermapheight}, () => [0,0,0,'&nbsp'])
 );
-mathdotrandomindex = -1
+
 
 seedinput.addEventListener("keydown", async function(event) {
     if (event.key==="Enter") {
         event.preventDefault();
         seed = seedinput.value.toUpperCase();
         await reroll();
-        generateflowermap();
-        flowerfield.style.backgroundColor = "#222222"
+        if (mathdotrandom(0,1) ===0) {
+            generateflowermap();
+            flowerfield.style.backgroundColor = "#222222"
+        }
     }
 })
 
@@ -50,6 +53,21 @@ function mathdotrandom(inclusivemin, exclusivemax) {
     }
     return Math.floor(randomarr[mathdotrandomindex%(randomarr.length)]/256*(exclusivemax-inclusivemin))+inclusivemin;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function generateflowermap() {
      numflowers=mathdotrandom(3,30);
@@ -98,6 +116,7 @@ async function flowertick() {
 
     if (flag===false) {
         clearInterval(flowertickinterval);
+        alert("You received a gift: [Flower Field]!")
     }
 }
 
