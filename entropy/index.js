@@ -72,7 +72,7 @@ function mathdotrandom(inclusivemin, exclusivemax) {
 }
 
 function starteyes() {
-    for (y=0;y<flowermapheight;y++) {
+    for (y=0;y<(flowermapheight);y++) {
         if (isthereaneyehere===0) {
             let spinspinspin = mathdotrandom(0,3);
             if (spinspinspin < 2) {
@@ -88,14 +88,21 @@ function starteyes() {
 }
 
 function tickeyes() {
-    returnstr=""
-    returnarr=[]
+    returnstr="";
+    returnarr=[];
     for (y=0;y<flowermapheight;y++) {
         returnarr.push(" ".repeat(flowermapwidth));
     }
     eyesonscreen.forEach((element)=> {
-        returnarr[element[5]]=0
+        for (i=0;i<element[1];i++) {
+            returnarr[element[5]+i]=" ".repeat(element[4]+1)+element[2][element[3]] + " ".repeat(flowermapwidth-element[4]-element[0]-1);
+        }
     })
+    returnarr.forEach((val)=>{
+        returnstr += val;
+    })
+    flowerfield.innerHTML=returnstr;
+    //change ' ' to &nbsp
 }
 
 
