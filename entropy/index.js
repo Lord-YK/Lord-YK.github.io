@@ -84,7 +84,7 @@ function starteyes() {
         isthereaneyehere--;
     
     }
-    setInterval(tickeyes, 200);
+    setInterval(tickeyes, 500);
 }
 
 function tickeyes() {
@@ -95,8 +95,9 @@ function tickeyes() {
     }
     eyesonscreen.forEach((element)=> {
         for (i=0;i<element[1];i++) {
-            returnarr[element[5]+i]=" ".repeat(element[4]+1)+element[2][element[3]][i] + " ".repeat(flowermapwidth-element[4]-element[0]-1)+"<br>";
+            returnarr[element[5]+i]=" ".repeat(element[4]+1)+element[2][element[3]%element[2].length][i] + " ".repeat(flowermapwidth-element[4]-element[0]-1)+"<br>";
         }
+        element[3]++
     })
     returnarr.forEach((val)=>{
         returnstr += val;
