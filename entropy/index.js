@@ -88,7 +88,6 @@ function starteyes() {
 }
 
 function tickeyes() {
-    returnstr="<a style='color:#00FF00;'>";
     returnarr=[];
     let newreturnstr = "";
     for (y=0;y<flowermapheight;y++) {
@@ -110,6 +109,7 @@ function tickeyes() {
             newreturnstr += returnstr[i];
         }
     }
+    newreturnstr = "<a style='color:#00ff00;'>" + newreturnstr;
     flowerfield.innerHTML=newreturnstr;
     //change ' ' to &nbsp
 }
