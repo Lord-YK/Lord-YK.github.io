@@ -43,13 +43,12 @@ seedinput.addEventListener("keydown", async function(event) {
         await reroll();
         let eh = mathdotrandom(0,2)
         if (eh ===0) {
-            generateflowermap();
-            flowerfield.style.backgroundColor = "#222222"
-        } else {
             flowerfield.innerHTML = "";
             starteyes();
             flowerfield.style.backgroundColor = "#000000"
-
+        } else {
+            generateflowermap();
+            flowerfield.style.backgroundColor = "#222222"
         }
     }
 })
