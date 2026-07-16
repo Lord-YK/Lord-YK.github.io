@@ -106,13 +106,7 @@ async function flowertick() {
                 } else {
                     nextfieldmap[x][y]="B";
                 }
-            } else {
-                if (mathdotprobabilitytrue(0.01)) {
-                    nextfieldmap[x][y]="&nbsp";
-                } else {
-                    nextfieldmap[x][y]="R";
-                }
-            }
+            } 
             returnstr += `<a style="color:rgb(${lettertorgbmap[nextfieldmap[x][y]][0]},${lettertorgbmap[nextfieldmap[x][y]][1]},${lettertorgbmap[nextfieldmap[x][y]][2]})">${nextfieldmap[x][y]}</a>`
 
             if (x===(fieldwidth-1)) {
