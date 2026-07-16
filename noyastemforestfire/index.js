@@ -23,8 +23,6 @@ const fieldmap = Array.from({length: fieldwidth}, () =>
     Array.from({length: fieldheight}, () => '&nbsp')
 );
 
-
-
 lettertorgbmap = {
     "T" : [0, 255, 0],
     "B" : [255, 0, 0],
@@ -143,3 +141,4 @@ function checkgrid(x, y, gridn) {
     }
     return returnarr
 }
+generatefieldmap();
