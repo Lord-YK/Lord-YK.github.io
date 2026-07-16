@@ -1,6 +1,6 @@
 //ignore any useless variables I'm reusing code from another project and
 //lazy to figure out what to delete
-const surroundings = [];
+let surroundings = [];
 const width = window.innerWidth;
 const height = window.innerHeight;
 const flowerfield = document.getElementById("field");
@@ -13,13 +13,13 @@ const isthereaneyehere=0;
 const mathdotrandomindex = -1
 const randomarr = [];
 const seed = [];
-const returnstr = "";
-const flowertickinterval = 0;
-const flag=false;
+let returnstr = "";
+let flowertickinterval = 0;
+let flag=false;
 const flowertypes = [];
 const flowerchars = ['9','T','P','Y','$','@','*','x','v','p','t','O']
 
-const fieldmap = Array.from({length: fieldwidth}, () =>
+let fieldmap = Array.from({length: fieldwidth}, () =>
     Array.from({length: fieldheight}, () => '&nbsp')
 );
 
@@ -30,7 +30,7 @@ lettertorgbmap = {
     "&nbsp" : [34,34,34] //wtvr the background is
 }
 
-const nextfieldmap = Array.from({length: fieldwidth}, () =>
+let nextfieldmap = Array.from({length: fieldwidth}, () =>
     Array.from({length: fieldheight}, () => '&nbsp')
 );
 
@@ -68,7 +68,7 @@ async function flowertick() {
         for (x=0;x<fieldwidth;x++) {
             if (fieldmap[x][y]==='&nbsp') {
                 surroundings=checkgrid(x,y,2);
-                const probabilityofreproduction = 0.01;
+                let probabilityofreproduction = 0.01;
                 surroundings.forEach(element => {
                     if (element === "T" || element === "B" || element === "R") {
                         probabilityofreproduction *= 5;
@@ -86,7 +86,7 @@ async function flowertick() {
             } else if (fieldmap[x][y]==="T"){
                 flag=false;
                 surroundings=checkgrid(x,y,2);
-                const probabilityofburning = 0.005;
+                let probabilityofburning = 0.005;
                 surroundings.forEach(element => {
                     if (element === "T" || element === "B") {
                         probabilityofburning *= 5;
@@ -139,6 +139,7 @@ function checkgrid(x, y, gridn) {
             }
         }
     }
-    return returnarr
+    return returnarrr
 }
+
 generatefieldmap();
