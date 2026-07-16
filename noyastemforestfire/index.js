@@ -18,9 +18,12 @@ const flowertickinterval = 0;
 const flag=false;
 const flowertypes = [];
 const flowerchars = ['9','T','P','Y','$','@','*','x','v','p','t','O']
+
 const fieldmap = Array.from({length: fieldwidth}, () =>
     Array.from({length: fieldheight}, () => '&nbsp')
 );
+
+
 
 lettertorgbmap = {
     "T" : [0, 255, 0],
