@@ -68,10 +68,10 @@ async function flowertick() {
         for (x=0;x<fieldwidth;x++) {
             if (fieldmap[x][y]==='&nbsp') {
                 surroundings=checkgrid(x,y,2);
-                let probabilityofreproduction = 0.0005;
+                let probabilityofreproduction = 0.0;
                 surroundings.forEach(element => {
                     if (element === "T" || element === "R") {
-                        probabilityofreproduction *= 1.2;
+                        probabilityofreproduction += 0.0005;
                     }
                     
                 });
@@ -86,10 +86,10 @@ async function flowertick() {
             } else if (fieldmap[x][y]==="T"){
                 flag=false;
                 surroundings=checkgrid(x,y,2);
-                let probabilityofburning = 0.0005;
+                let probabilityofburning = 0;
                 surroundings.forEach(element => {
                     if (element === "T" || element === "B") {
-                        probabilityofburning *= 1.1;
+                        probabilityofburning += 0.0005;
                     }
                     
                 });
