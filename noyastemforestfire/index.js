@@ -107,8 +107,8 @@ async function flowertick() {
                     nextfieldmap[x][y]="B";
                 }
             } else if (fieldmap[x][y]==="R") {
-                if (mathdotprobabilitytrue(0.01)) {
-                    nextfieldmap[x][y] = "T";
+                if (mathdotprobabilitytrue(0.005)) {
+                    nextfieldmap[x][y] = "&nbsp";
                 } else {
                     nextfieldmap[x][y] = "R";
                 }
