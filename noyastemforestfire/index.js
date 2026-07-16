@@ -71,7 +71,7 @@ async function flowertick() {
                 let probabilityofreproduction = 0.0005;
                 surroundings.forEach(element => {
                     if (element === "T" || element === "R") {
-                        probabilityofreproduction *= 2;
+                        probabilityofreproduction *= 1.2;
                     }
                     
                 });
@@ -89,7 +89,7 @@ async function flowertick() {
                 let probabilityofburning = 0.0005;
                 surroundings.forEach(element => {
                     if (element === "T" || element === "B") {
-                        probabilityofburning *= 1.2;
+                        probabilityofburning *= 1.1;
                     }
                     
                 });
