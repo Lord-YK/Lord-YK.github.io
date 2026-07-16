@@ -1,0 +1,12 @@
+body {
+    margin: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-variation-settings: "CASL" 0.25, "wght" 500;
+    background-color: #222222;
+    font-size:24px;
+    font-weight:bold;
+    overflow:hidden;
+    overflow-wrap:anywhere;
+    word-break:break-all;
+    white-space: pre-wrap;
+}

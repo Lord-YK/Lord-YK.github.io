@@ -121,18 +121,6 @@ function tickeyes() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 function generateflowermap() {
      numflowers=mathdotrandom(3,30);
      for (i=0; i<numflowers; i++) {
