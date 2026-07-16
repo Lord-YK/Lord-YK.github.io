@@ -51,7 +51,7 @@ function mathdotprobabilitytrue(probabilitytruedecimal) {
 //R for [tree remains]
 //&nbsp for [grass]
 function generatefieldmap() {
-     for (i=0; i<mathdotrandom(5, 30); i++) {
+     for (i=0; i<mathdotrandom(10, 60); i++) {
         fieldmap[mathdotrandom(0, fieldwidth)][mathdotrandom(0, fieldheight)] = "T"
      }
      
@@ -89,7 +89,7 @@ async function flowertick() {
                 let probabilityofburning = 0.0005;
                 surroundings.forEach(element => {
                     if (element === "T" || element === "B") {
-                        probabilityofburning *= 2;
+                        probabilityofburning *= 1.5;
                     }
                     
                 });
@@ -106,7 +106,9 @@ async function flowertick() {
                 } else {
                     nextfieldmap[x][y]="B";
                 }
-            } 
+            } else {
+                nextfieldmap[x][y] = "R";
+            }
             returnstr += `<a style="color:rgb(${lettertorgbmap[nextfieldmap[x][y]][0]},${lettertorgbmap[nextfieldmap[x][y]][1]},${lettertorgbmap[nextfieldmap[x][y]][2]})">${nextfieldmap[x][y]}</a>`
 
             if (x===(fieldwidth-1)) {
