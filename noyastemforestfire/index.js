@@ -70,7 +70,7 @@ async function flowertick() {
                 surroundings=checkgrid(x,y,2);
                 let probabilityofreproduction = 0.0005;
                 surroundings.forEach(element => {
-                    if (element === "T" || element === "B" || element === "R") {
+                    if (element === "T" || element === "R") {
                         probabilityofreproduction *= 2;
                     }
                     
