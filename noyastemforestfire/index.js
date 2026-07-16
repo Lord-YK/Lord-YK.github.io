@@ -8,7 +8,6 @@ const widthpxperchar = 14.5;
 const heightpxperchar = 26;
 const fieldwidth = Math.floor(width/widthpxperchar);
 const fieldheight = Math.floor(height/heightpxperchar);
-const assets;
 const eyesonscreen=[];
 const isthereaneyehere=0;
 const mathdotrandomindex = -1
